@@ -5,5 +5,6 @@ import (
 )
 
 func main()  {
-	fmt.Println("Say Hi to Esmee")
+	fmt.Println("Say Hello to Esmee")
+	createLeaf("test", "bruh", "test.txt")
 }
