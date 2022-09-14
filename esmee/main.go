@@ -6,5 +6,5 @@ import (
 
 func main()  {
 	fmt.Println("Say Hello to Esmee")
-	createLeaf("test", "bruh", "test.txt")
+	exposedCli()
 }
