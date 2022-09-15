@@ -5,14 +5,25 @@ import (
 	"strings"
 )
 
+var rootTree string = "root/"
+
+func pathResolver(path string) (resolvedPath string) {
+	resolvedPath = fmt.Sprintf("%v%v", rootTree, path)
+	return
+}
+
 func interpreter(command string) (result string) {
 	switch  {
+
+		//ANCHOR Help and exit
 		case command=="Help":
 			result = "Welcome to EsmeeDB exposed CLI"
 		case command== "help":
 			result = "Welcome to EsmeeDB exposed CLI"
 		case command== "exit":
 			result = "Bye"
+
+		//ANCHOR CLIMB
 		case strings.Contains(command, "climb"):
 			subCommands := strings.Split(command, " ")
 			switch{
@@ -22,6 +33,9 @@ func interpreter(command string) (result string) {
 					treeName := subCommands[1]
 					result = treeName
 			}
+
+		
+			//ANCHOR CREATES
 		case strings.Contains(command, "create") :
 			subCommands := strings.Split(command, " ")
 			switch  {
