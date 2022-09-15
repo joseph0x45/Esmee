@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 )
 
 func errorHandler(code string) (meaning string) {
@@ -13,7 +12,11 @@ func errorHandler(code string) (meaning string) {
 	case "UC":
 		meaning = "Unrecognized command"
 	case "ET":
-		meaning = fmt.Sprintf("Can't create existing tree")
+		meaning = "Can't create existing tree"
+	case "EB":
+		meaning = "Can't create existing branch"
+	case "EL":
+		meaning = "Can't create existing leaf"
 	}
 	return
 }
