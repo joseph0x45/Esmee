@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -13,8 +14,13 @@ func interpreter(command string) (result string) {
 	case command== "exit":
 		result = "Bye"
 	case strings.Contains(command, "create") :
-		treeName:= strings.Split(command, " ")
-		result = treeName[0]
+		subCommands := strings.Split(command, " ")
+		fmt.Println(len(subCommands))
+		switch  {
+		case len(subCommands)<5:
+			fmt.Println("Invalid syntax")
+			result = "Invalid syntax"
+		}
 	}
 
 	return

@@ -5,7 +5,7 @@ import (
 )
 
 func commandBuilder(commandArray [3]string) (command string) {
-	if commandArray[1]=="" || commandArray[2]=="" {
+	if commandArray[1]=="" {
 		command = commandArray[0]
 		return
 	}
