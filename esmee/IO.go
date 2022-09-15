@@ -12,7 +12,7 @@ func createTree(treeName string) (status bool, message string) {
 	err := os.Mkdir(treeName, perm)
 	if err!= nil {
 		status = false
-		message = "Can't create tree"
+		message = "Error ET"
 		return
 	}
 	status = true
@@ -25,7 +25,7 @@ func createBranch(treeName string, branchName string) (status bool, message stri
 	err := os.Mkdir(path, perm)
 	if err!= nil{
 		status = false
-		message = "Can't create branch"
+		message = "Error EB"
 		return
 	}
 	status = true

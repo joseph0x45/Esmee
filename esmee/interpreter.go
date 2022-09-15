@@ -62,6 +62,9 @@ func interpreter(command string) (result string) {
 				result = "Error IS"
 			case rootTree!="root/":
 				result = "Error TIT"
+			default :
+				treePath := pathResolver(subCommands[2])
+				_, result = createTree(treePath)
 		}
 	
 
