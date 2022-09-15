@@ -5,6 +5,11 @@ import (
 	"strings"
 )
 
+const helpMessage string = 
+`Welcome to EsmeeDB CLI
+This is a short documentation of the commands available. Refeer to the online docs for more details
+`
+
 var rootTree string = "root/"
 
 func pathResolver(path string) (resolvedPath string) {
@@ -17,9 +22,9 @@ func interpreter(command string) (result string) {
 
 	//ANCHOR Help and exit
 	case command == "Help":
-		result = "Welcome to EsmeeDB exposed CLI"
+		fmt.Print(helpMessage)
 	case command == "help":
-		result = "Welcome to EsmeeDB exposed CLI"
+		fmt.Print(helpMessage)
 	case command == "exit":
 		fmt.Println("Bye")
 		result = "Bye"
@@ -54,7 +59,7 @@ func interpreter(command string) (result string) {
 		subCommands := strings.Split(command, " ")
 		switch {
 			case len(subCommands) > 3 || len(subCommands) < 3:
-				result = "Invalid syntax"
+				result = "Error IS"
 			case rootTree!="root/":
 				result = "Error TIT"
 		}
@@ -63,7 +68,7 @@ func interpreter(command string) (result string) {
 	case strings.Contains(command, "create branch"):
 
 	default:
-		fmt.Printf("Unrecognized command <%v>\n", command)
+		result = "Error UC"
 	}
 
 	return
