@@ -21,6 +21,8 @@ func interpreter(command string) (result string) {
 			fmt.Println("Invalid syntax")
 			result = "Invalid syntax"
 		}
+	default:
+		fmt.Printf("<%v>", command)
 	}
 
 	return
