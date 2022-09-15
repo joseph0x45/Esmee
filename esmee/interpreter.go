@@ -16,8 +16,11 @@ func interpreter(command string) (result string) {
 		case strings.Contains(command, "climb"):
 			subCommands := strings.Split(command, " ")
 			switch{
-			case len(subCommands)>2 || len(subCommands)<2:
-				result = "Invalid syntax. Climb requires only one argument which is the tree name"
+				case len(subCommands)>2 || len(subCommands)<2:
+					result = "Invalid syntax. Climb requires only one argument which is the tree name"
+				case len(subCommands)==2:
+					treeName := subCommands[1]
+					result = treeName
 			}
 		case strings.Contains(command, "create") :
 			subCommands := strings.Split(command, " ")
