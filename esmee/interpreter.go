@@ -63,7 +63,7 @@ func interpreter(command string) (result string) {
 	case strings.Contains(command, "create branch"):
 
 	default:
-		fmt.Println("Unrecognized command <%v>", command)
+		fmt.Printf("Unrecognized command <%v>\n", command)
 	}
 
 	return
