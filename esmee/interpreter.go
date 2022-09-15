@@ -1,17 +1,20 @@
 package main
 
 import (
-	
+	"strings"
 )
 
 func interpreter(command string) (result string) {
-	switch command {
-	case "Help":
+	switch  {
+	case command=="Help":
 		result = "Welcome to EsmeeDB exposed CLI"
-	case "help":
+	case command== "help":
 		result = "Welcome to EsmeeDB exposed CLI"
-	case "exit":
+	case command== "exit":
 		result = "Bye"
+	case strings.Contains(command, "create") :
+		treeName:= strings.Split(command, " ")
+		result = treeName[0]
 	}
 
 	return
