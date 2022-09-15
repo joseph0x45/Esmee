@@ -21,9 +21,10 @@ func interpreter(command string) (result string) {
 	case command == "help":
 		result = "Welcome to EsmeeDB exposed CLI"
 	case command == "exit":
+		fmt.Println("Bye")
 		result = "Bye"
 
-	//ANCHOR CLIMB
+	//ANCHOR CLIMB & CLIMBDOWN
 	case strings.Contains(command, "climb"):
 		subCommands := strings.Split(command, " ")
 		switch {
@@ -49,18 +50,20 @@ func interpreter(command string) (result string) {
 		}
 
 		//ANCHOR CREATES
-	case strings.Contains(command, "create"):
+	case strings.Contains(command, "create tree"):
 		subCommands := strings.Split(command, " ")
 		switch {
-		case len(subCommands) > 3 || len(subCommands) < 3:
-			result = "Invalid syntax"
-		case subCommands[1] == "tree":
-			result = fmt.Sprintf("wants to create a tree named %v", subCommands[2])
-		case subCommands[1] == "branch":
-			result = fmt.Sprintf("wants to create a branch named %v", subCommands[2])
+			case len(subCommands) > 3 || len(subCommands) < 3:
+				result = "Invalid syntax"
+			case rootTree!="root/":
+				result = "Error TIT"
 		}
+	
+
+	case strings.Contains(command, "create branch"):
+
 	default:
-		fmt.Printf("Unrecognized command <%v>", command)
+		fmt.Println("Unrecognized command <%v>", command)
 	}
 
 	return
