@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"strings"
 )
 
 const perm fs.FileMode = 0777
@@ -20,9 +21,10 @@ func createTree(treeName string) (status bool, message string) {
 	return
 }
 
-func createBranch(treeName string, branchName string) (status bool, message string) {
-	path := treeName + "/" + branchName
-	err := os.Mkdir(path, perm)
+func createBranch(branchPath string) (status bool, message string) {
+	treeName := strings.Split(branchPath, "/")[1]
+	branchName := strings.Split(branchPath, "/")[2]
+	err := os.Mkdir(branchPath, perm)
 	if err!= nil{
 		status = false
 		message = "Error EB"

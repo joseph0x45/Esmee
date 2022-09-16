@@ -31,6 +31,8 @@ func exposedCli() {
 			case strings.Contains(result, "Error"):
 				errorCode := strings.Split(result, " ")[1]
 				fmt.Println(errorHandler(errorCode))
+			default :
+			fmt.Println(result)
 		}
 	}
 }

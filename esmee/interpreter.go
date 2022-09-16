@@ -45,10 +45,10 @@ func interpreter(command string) (result string) {
 						rootTree = "root/"
 						return
 					}
-					rootTree = fmt.Sprintf("%v%v", rootTree, treeName)
+					rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
 					result = fmt.Sprintf("climb %v", treeName)
 				default:
-					rootTree = fmt.Sprintf("%v%v", rootTree, treeName)
+					rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
 					result = fmt.Sprintf("climb %v", treeName)
 			}
 
@@ -69,6 +69,16 @@ func interpreter(command string) (result string) {
 	
 
 	case strings.Contains(command, "create branch"):
+		subCommands := strings.Split(command, " ")
+		switch  {
+			case len(subCommands) >3 || len(subCommands)<3:
+				result = "Error IS"
+			case rootTree=="root/":
+				result = "Error BOOT"
+			default :
+				branchName := subCommands[2]
+				_, result = createBranch(pathResolver(branchName))
+		}
 
 	default:
 		result = "Error UC"

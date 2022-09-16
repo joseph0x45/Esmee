@@ -7,6 +7,8 @@ func errorHandler(code string) (meaning string) {
 	switch code {
 	case "TIT":
 		meaning = "Can't create tree in a tree"
+	case "BOOT":
+		meaning = "Can't create branch while not in a tree"
 	case "IS":
 		meaning = "Invalid syntax"
 	case "UC":
