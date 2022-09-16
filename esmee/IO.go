@@ -4,10 +4,16 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"runtime"
 	"strings"
 )
 
 const perm fs.FileMode = 0777
+
+func getTree(treeName string)  {
+	system := runtime.GOOS
+	fmt.Println(system)
+}
 
 func createTree(treeName string) (status bool, message string) {
 	err := os.Mkdir(treeName, perm)
