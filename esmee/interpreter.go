@@ -8,6 +8,14 @@ import (
 const helpMessage string = 
 `Welcome to EsmeeDB CLI
 This is a short documentation of the commands available. Refeer to the online docs for more details
+>create tree/branch:
+    The create commmand is used to create a new tree or branch. To create a branch you must be in a tree
+Lets say we created a tree called Food (using create tree Food). In order to create a branch "Vegetarian" on the tree
+we will first have to climb up the tree.
+>climb Food
+>Food#
+once we climb up a tree, the prompt is updated with the name of the tree. And only then we can create a branch
+>Food#create branch Vegetarians
 `
 
 var rootTree string = "root/"
