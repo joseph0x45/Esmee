@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"strings"
+	"io/ioutil"
 )
 
-const helpMessage string = 
-`Welcome to EsmeeDB CLI
+const helpMessage string = `Welcome to EsmeeDB CLI
 This is a short documentation of the commands available. Refeer to the online docs for more details
 >create tree/branch:
     The create commmand is used to create a new tree or branch. To create a branch you must be in a tree
@@ -46,18 +46,18 @@ func interpreter(command string) (result string) {
 		case len(subCommands) == 2:
 			treeName := subCommands[1]
 			switch {
-				case treeName=="down" :
-					if rootTree!="root/" {
-						treeName:= strings.Split(rootTree, "/")
-						result = fmt.Sprintf("climbdown %v", treeName[1])
-						rootTree = "root/"
-						return
-					}
-					rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
-					result = fmt.Sprintf("climb %v", treeName)
-				default:
-					rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
-					result = fmt.Sprintf("climb %v", treeName)
+			case treeName == "down":
+				if rootTree != "root/" {
+					treeName := strings.Split(rootTree, "/")
+					result = fmt.Sprintf("climbdown %v", treeName[1])
+					rootTree = "root/"
+					return
+				}
+				rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
+				result = fmt.Sprintf("climb %v", treeName)
+			default:
+				rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
+				result = fmt.Sprintf("climb %v", treeName)
 			}
 
 		}
@@ -66,28 +66,38 @@ func interpreter(command string) (result string) {
 	case strings.Contains(command, "create tree"):
 		subCommands := strings.Split(command, " ")
 		switch {
-			case len(subCommands) > 3 || len(subCommands) < 3:
-				result = "Error IS"
-			case rootTree!="root/":
-				result = "Error TIT"
-			default :
-				treePath := pathResolver(subCommands[2])
-				_, result = createTree(treePath)
+		case len(subCommands) > 3 || len(subCommands) < 3:
+			result = "Error IS"
+		case rootTree != "root/":
+			result = "Error TIT"
+		default:
+			treePath := pathResolver(subCommands[2])
+			_, result = createTree(treePath)
 		}
-	
 
 	case strings.Contains(command, "create branch"):
 		subCommands := strings.Split(command, " ")
-		switch  {
-			case len(subCommands) >3 || len(subCommands)<3:
-				result = "Error IS"
-			case rootTree=="root/":
-				result = "Error BOOT"
-			default :
-				branchName := subCommands[2]
-				_, result = createBranch(pathResolver(branchName))
+		switch {
+		case len(subCommands) > 3 || len(subCommands) < 3:
+			result = "Error IS"
+		case rootTree == "root/":
+			result = "Error BOOT"
+		default:
+			branchName := subCommands[2]
+			_, result = createBranch(pathResolver(branchName))
 		}
 
+	
+	//ANCHOR Get forest arborescence
+	case command=="arb":
+		content, err := ioutil.ReadDir(rootTree)
+		if err!= nil{
+			fmt.Println(err)
+		}
+		for _, file := range content{
+			fmt.Printf("%v", file.Name())
+		}
+	
 	default:
 		result = "Error UC"
 	}
