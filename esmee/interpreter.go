@@ -95,7 +95,16 @@ func interpreter(command string) (result string) {
 			fmt.Println(err)
 		}
 		for _, file := range content{
-			fmt.Printf("%v", file.Name())
+			nature := ""
+			switch {
+			case file.IsDir() && rootTree=="root/" :
+				nature = "🌴"
+			case file.IsDir() :
+				nature = "🌿"
+			default:
+				nature = "🍀"
+			}
+			fmt.Printf("%v%v%v\n",nature, file.Name(), nature)
 		}
 	
 	default:
