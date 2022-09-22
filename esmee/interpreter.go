@@ -52,12 +52,19 @@ func interpreter(command string) (result string) {
 					result = fmt.Sprintf("climbdown %v", treeName[1])
 					rootTree = "root/"
 					return
+				}else{
+					fmt.Println("You can't use `down` when not in a tree.")
+					return
 				}
-				rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
-				result = fmt.Sprintf("climb %v", treeName)
 			default:
 				rootTree = fmt.Sprintf("%v%v/", rootTree, treeName)
-				result = fmt.Sprintf("climb %v", treeName)
+				_, err := os.ReadDir(rootTree)
+				if err!= nil{
+					result = "Error ITOB"
+					rootTree = "root/"
+				}else{
+					result = fmt.Sprintf("climb %v", treeName)
+				}
 			}
 
 		}
@@ -72,7 +79,12 @@ func interpreter(command string) (result string) {
 			result = "Error TIT"
 		default:
 			treePath := pathResolver(subCommands[2])
-			_, result = createTree(treePath)
+			switch treePath{
+			case fmt.Sprintf("%vdown", rootTree):
+				result = "Error CDRK"
+			default:
+				_, result = createTree(treePath)
+			}
 		}
 
 	case strings.Contains(command, "create branch"):
@@ -84,7 +96,13 @@ func interpreter(command string) (result string) {
 			result = "Error BOOT"
 		default:
 			branchName := subCommands[2]
-			_, result = createBranch(pathResolver(branchName))
+			fmt.Println(branchName)
+			switch branchName {
+			case "down":
+				result = "Error CDRK"
+			default:
+				_, result = createBranch(pathResolver(branchName))
+			}
 		}
 
 	
