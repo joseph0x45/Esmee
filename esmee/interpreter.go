@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"io/ioutil"
+	"os"
 )
 
 const helpMessage string = `Welcome to EsmeeDB CLI
@@ -90,7 +90,7 @@ func interpreter(command string) (result string) {
 	
 	//ANCHOR Get forest arborescence
 	case command=="arb":
-		content, err := ioutil.ReadDir(rootTree)
+		content, err := os.ReadDir(rootTree)
 		if err!= nil{
 			fmt.Println(err)
 		}
