@@ -1,10 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "esmee/esmee/cmd"
 
-func main()  {
-	fmt.Println("Say Hello to Esmee")
-	exposedCli()
+func main() {
+	cmd.Execute()
 }
