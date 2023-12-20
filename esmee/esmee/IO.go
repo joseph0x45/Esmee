@@ -1,4 +1,4 @@
-package main
+package esmee
 
 import (
 	"fmt"
@@ -10,14 +10,14 @@ import (
 
 const perm fs.FileMode = 0777
 
-func getTree(treeName string)  {
+func getTree(treeName string) {
 	system := runtime.GOOS
 	fmt.Println(system)
 }
 
 func createTree(treeName string) (status bool, message string) {
 	err := os.Mkdir(treeName, perm)
-	if err!= nil {
+	if err != nil {
 		status = false
 		message = "Error ET"
 		return
@@ -31,7 +31,7 @@ func createBranch(branchPath string) (status bool, message string) {
 	treeName := strings.Split(branchPath, "/")[1]
 	branchName := strings.Split(branchPath, "/")[2]
 	err := os.Mkdir(branchPath, perm)
-	if err!= nil{
+	if err != nil {
 		status = false
 		message = "Error EB"
 		return
@@ -43,7 +43,7 @@ func createBranch(branchPath string) (status bool, message string) {
 
 func removeTree(treeName string) (status bool, message string) {
 	err := os.RemoveAll(treeName)
-	if err!=nil{
+	if err != nil {
 		status = false
 		message = "Can't remove tree"
 		return
@@ -53,10 +53,10 @@ func removeTree(treeName string) (status bool, message string) {
 	return
 }
 
-func removeBranch(treeName string, branchName string) (status bool, message string)  {
+func removeBranch(treeName string, branchName string) (status bool, message string) {
 	path := treeName + "/" + branchName
 	err := os.RemoveAll(path)
-	if err!=nil{
+	if err != nil {
 		status = false
 		message = "Can't remove tree"
 		return
@@ -70,7 +70,7 @@ func createLeaf(treeName string, branchName string, leafName string) (status boo
 	path := treeName + "/" + branchName + "/" + leafName
 	fmt.Printf("About to create file %v\n", path)
 	err := os.WriteFile(path, []byte("Bruh"), 0777)
-	if err!= nil{
+	if err != nil {
 		status = false
 		message = "Can't create leaf"
 		return

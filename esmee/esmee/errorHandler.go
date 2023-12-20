@@ -1,7 +1,6 @@
-package main
+package esmee
 
-import (
-)
+import ()
 
 func errorHandler(code string) (meaning string) {
 	switch code {
